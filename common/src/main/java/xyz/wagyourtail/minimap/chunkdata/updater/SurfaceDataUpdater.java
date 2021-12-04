@@ -65,7 +65,7 @@ public class SurfaceDataUpdater extends AbstractChunkDataUpdater<SurfaceDataPart
                         data.heightmap[i] = j;
                         data.blockid[i] = parent.getOrRegisterBlockState(block);
                         data.biomeid[i] = parent.getOrRegisterBiome(biomeRegistry.getKey(chunk
-                            .getNoiseBiome(x >> 2, data.heightmap[i] >> 2, z >> 2).value()
+                            .getBiomes().getNoiseBiome(x >> 2, data.heightmap[i] >> 2, z >> 2)
                         ));
                         data.blocklight[i] = (byte) light.getLightValue(blockPos.setY(data.heightmap[i] + 1));
                         break;
@@ -84,7 +84,7 @@ public class SurfaceDataUpdater extends AbstractChunkDataUpdater<SurfaceDataPart
                 ));
                 data.blockid[i] = parent.getOrRegisterBlockState(top);
                 data.biomeid[i] = parent.getOrRegisterBiome(biomeRegistry.getKey(chunk
-                    .getNoiseBiome(x >> 2, data.heightmap[i] >> 2, z >> 2).value()
+                    .getBiomes().getNoiseBiome(x >> 2, data.heightmap[i] >> 2, z >> 2)
                 ));
                 data.blocklight[i] = (byte) light.getLightValue(blockPos.setY(data.heightmap[i] + 1));
 
@@ -150,7 +150,7 @@ public class SurfaceDataUpdater extends AbstractChunkDataUpdater<SurfaceDataPart
                     data.heightmap[i] = j;
                     data.blockid[i] = parent.getOrRegisterBlockState(block);
                     data.biomeid[i] = parent.getOrRegisterBiome(biomeRegistry.getKey(
-                        chunk.getNoiseBiome(x >> 2, data.heightmap[i] >> 2, z >> 2).value()
+                        chunk.getBiomes().getNoiseBiome(x >> 2, data.heightmap[i] >> 2, z >> 2)
                     ));
                     break;
                 }
@@ -160,7 +160,7 @@ public class SurfaceDataUpdater extends AbstractChunkDataUpdater<SurfaceDataPart
             BlockState top = chunk.getBlockState(blockPos.setY(data.heightmap[i]));
             data.blockid[i] = parent.getOrRegisterBlockState(top);
             data.biomeid[i] = parent.getOrRegisterBiome(biomeRegistry.getKey(
-                chunk.getNoiseBiome(x >> 2, data.heightmap[i] >> 2, z >> 2).value()
+                chunk.getBiomes().getNoiseBiome(x >> 2, data.heightmap[i] >> 2, z >> 2)
             ));
             if (top.getBlock().equals(Blocks.WATER)) {
                 BlockState b = top;
