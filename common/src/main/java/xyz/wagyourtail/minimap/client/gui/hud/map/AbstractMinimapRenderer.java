@@ -181,7 +181,7 @@ public abstract class AbstractMinimapRenderer extends AbstractMapRenderer {
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 
         if (hasStencil) {
-            ModLoaderSpecific.checkEnableStencil();
+            ModLoaderSpecific.INSTANCE.checkEnableStencil();
 
             GL11.glEnable(GL11.GL_STENCIL_TEST);
             RenderSystem.colorMask(false, false, false, false);
