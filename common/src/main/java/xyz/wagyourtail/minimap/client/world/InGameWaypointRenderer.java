@@ -6,6 +6,7 @@ import com.mojang.math.Matrix4f;
 import com.mojang.math.Vector3f;
 import dev.architectury.event.Event;
 import dev.architectury.event.EventFactory;
+import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -24,9 +25,9 @@ public class InGameWaypointRenderer {
     public static final double WARP_COMPENSATION_X_FACTOR = 10;
 
 
-    public static void onRender(PoseStack stack, float partialTicks, long finishTimeNano) {
+    public static void onRender(PoseStack stack, Camera camera) {
         stack.pushPose();
-        Vec3 center = mc.gameRenderer.getMainCamera().getPosition();
+        Vec3 center = camera.getPosition();
         boolean showBeam = MinimapClientApi.getInstance().getConfig().get(MinimapClientConfig.class).showWaypointBeam;
         for (Waypoint visibleWaypoint : MinimapClientApi.getInstance().getMapServer().waypoints.getVisibleWaypoints()) {
             //move center to waypoint
@@ -140,7 +141,7 @@ public class InGameWaypointRenderer {
     }
 
     public interface RenderLastEvent {
-        void onRenderLast(PoseStack stack, float partialTicks, long finishTimeNano);
+        void onRenderLast(PoseStack stack, Camera camera);
 
     }
 

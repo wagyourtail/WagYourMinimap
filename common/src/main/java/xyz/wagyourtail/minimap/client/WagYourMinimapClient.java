@@ -147,10 +147,10 @@ public class WagYourMinimapClient extends WagYourMinimap {
                 //                Thread.yield();
             }
         });
-        InGameWaypointRenderer.RENDER_LAST.register((stack, partial, finish) -> {
+        InGameWaypointRenderer.RENDER_LAST.register((stack, camera) -> {
             try {
                 if (MinimapApi.getInstance().getConfig().get(MinimapClientConfig.class).showWaypoints) {
-                    InGameWaypointRenderer.onRender(stack, partial, finish);
+                    InGameWaypointRenderer.onRender(stack, camera);
                 }
             } catch (Throwable t) {
                 t.printStackTrace();
