@@ -36,8 +36,8 @@ allprojects {
     version = rootProject.mod_version
     group = rootProject.maven_group
 
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_16
+    targetCompatibility = JavaVersion.VERSION_16
 
     repositories {
         // Add repositories to retrieve artifacts from in here.
