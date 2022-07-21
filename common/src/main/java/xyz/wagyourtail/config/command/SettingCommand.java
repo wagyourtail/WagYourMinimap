@@ -6,8 +6,9 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.commands.SharedSuggestionProvider;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import xyz.wagyourtail.config.ConfigManager;
 import xyz.wagyourtail.config.Or;
 import xyz.wagyourtail.config.field.SettingField;
@@ -15,10 +16,8 @@ import xyz.wagyourtail.config.field.SettingsContainer;
 import xyz.wagyourtail.config.field.SettingsContainerField;
 import xyz.wagyourtail.minimap.ModLoaderSpecific;
 
-import java.awt.*;
 import java.lang.reflect.*;
 import java.util.*;
-import java.util.List;
 import java.util.function.BiFunction;
 
 @SuppressWarnings({"unchecked", "generic"})
@@ -130,12 +129,12 @@ public class SettingCommand<S extends SharedSuggestionProvider> {
             fieldArg.executes(ctx -> {
                 preExecute.run();
                 try {
-                    MutableComponent component = Component.literal("Current value: ");
+                    MutableComponent component = new TextComponent("Current value: ");
                     for (T thing : settingField.get()) {
                         if (thing.getClass().isAnnotationPresent(SettingsContainer.class)) {
-                            component.append(Component.translatable(thing.getClass().getAnnotation(SettingsContainer.class).value()));
+                            component.append(new TranslatableComponent(thing.getClass().getAnnotation(SettingsContainer.class).value()));
                         } else {
-                            component.append(Component.literal(thing.toString()));
+                            component.append(new TextComponent(thing.toString()));
                         }
                         component.append(", ");
                     }
