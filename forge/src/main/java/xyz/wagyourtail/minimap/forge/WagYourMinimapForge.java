@@ -60,10 +60,4 @@ public class WagYourMinimapForge {
                 Minecraft.getInstance().gameRenderer.getMainCamera()
             );
     }
-
-    @SubscribeEvent
-    public void onClientCommand(RegisterClientCommandsEvent clientCommandsEvent) {
-        WagYourMinimapClient.CLIENT_COMMAND_REGISTRATION_EVENT.invoker().register(clientCommandsEvent.getDispatcher());
-    }
-
 }
